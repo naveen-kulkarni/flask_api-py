@@ -1,19 +1,11 @@
-CMD ["/bin/sh"]
-ENV PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ENV LANG=C.UTF-8
-/bin/sh -c apk add --no-cache
-ENV GPG_KEY=0D96DF4D4110E5C43FBFB17F2D347EA6AA65421D
-ENV PYTHON_VERSION=3.7.2
-/bin/sh -c set -ex &&
-/bin/sh -c cd /usr/local/bin &&
-ENV PYTHON_PIP_VERSION=19.0.1
-/bin/sh -c set -ex; wget
-CMD ["python3"]
-/bin/sh -c mkdir /cityppl
-COPY dir:a32e6096e7a99ed88933dcf72b49622ea0b37076a6d949d8e72088360ef0b306 in /cityppl
+FROM python:alpine3.7
+RUN mkdir /cityppl
+COPY . /cityppl
 WORKDIR /cityppl
-/bin/sh -c python db.py
-/bin/sh -c pip install -r
+RUN python db.py
+RUN pip install -r requirements.txt
 EXPOSE 5001
-ENTRYPOINT ["python"]
-CMD ["api.py"]
+CMD export FLASK_APP=api.py
+CMD flask run --host=0.0.0.0
+ENTRYPOINT [ "python" ]
+CMD [ "api.py" ]
