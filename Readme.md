@@ -43,6 +43,19 @@ Clone the helm-chart from the github account.
 Run the helm-chart
 	$helm install <Deployment-Name> city 
 
+To list helm chart.
+        $helm list
+
+To delete helm chart
+        $helm remove <chart name>
+
+Check the below commands to verify the deployments, pods and service
+	$kubectl get deployments
+	$kubectl get pods -o wide
+	$kubectl get svc
+	
+To enter in to pod
+	$kubectl exec -it <Pod-Name> -n <NameSpace> /bin/sh
 ==============================================================================================
 Kubernetes Without helm-chart deployments
 ==============================================================================================
@@ -88,3 +101,7 @@ Dockerfile - Dockerfile for image creation.
 Kubernetes : Contains the deployment.yaml and service.yaml file. A non-helm chart way of deployment.
 
 Helm Chart/city : Contains a helm chart "city".
+==============================================================================================
+
+Should you have questions,don't hesitate to reach me on
+naveenvk88@gmail.com.
