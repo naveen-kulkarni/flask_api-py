@@ -16,5 +16,8 @@ spec:
     spec:
       containers:
         - name: flask-app-container
-          image: naveenvk888/python_restapi_flask:python_restapi_flask
+          image: naveenvk888/flask-api-db:db_api_flask
           imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+              protocol: TCP
